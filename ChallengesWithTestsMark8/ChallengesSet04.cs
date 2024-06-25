@@ -41,16 +41,16 @@ namespace ChallengesWithTestsMark8
 
         public bool CouldFormTriangle(int sideLength1, int sideLength2, int sideLength3)
         {
-            int[] lengths = new int[]{ sideLength1, sideLength2, sideLength3 };
-            if (lengths[0] !> 0 || lengths[1] !> 0 || lengths[2] !> 0)
+            if (sideLength1 <= 0 || sideLength2 <= 0 || sideLength3 <= 0)
             {
                 return false;
+            }
 
-            }
-            else
-            {
-                return (lengths[0] + lengths[1] > lengths[2] && lengths[1] + lengths[2] > lengths[0] && lengths[0] + lengths[2] > lengths[1]);
-            }
+            int[] lengths = new int[]{ sideLength1, sideLength2, sideLength3 };
+            int[]orderedArray = lengths.OrderByDescending(x => x).ToArray();
+
+            return (orderedArray[2] + orderedArray[1] > orderedArray[0]);
+            
         }
 
         public bool IsStringANumber(string input)
@@ -78,7 +78,7 @@ namespace ChallengesWithTestsMark8
 
         public double AverageEvens(int[] numbers)
         {
-            if (numbers == null || numbers.Sum() == 0 || numbers.Where(x => x % 2 == 0).Count() == 0)
+            if (numbers == null || numbers.Where(x => x % 2 == 0).Count() == 0)
             {
                 return 0;
             }
